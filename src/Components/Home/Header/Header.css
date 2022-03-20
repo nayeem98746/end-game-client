@@ -1,0 +1,13 @@
+.link-style{
+    color: black;
+    padding: 10px;
+}
+.link-style:hover{
+    color: white;
+    background-color: orange;  
+}
+
+.info-bar{
+    margin-left: 30px;
+    margin-right: 30px;
+}
