@@ -5,7 +5,7 @@ import './Doctors.css'
 const Doctors = () => {
     const [doctors, setDoctors] = useState([])
     useEffect(() => {
-        fetch('/doctor.json')
+        fetch('http://localhost:5000/doctors')
         .then(res => res.json())
         .then(data => setDoctors(data))
     },[])
@@ -15,7 +15,7 @@ const Doctors = () => {
             <div className='doctor-con'>
                 {
                     doctors.map(doctor => <Doctor
-                    key={doctor.id}
+                    key={doctor._id}
                     doctor={doctor}
                     ></Doctor>)
                 }

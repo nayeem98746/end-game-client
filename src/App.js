@@ -9,6 +9,9 @@ import AuthProvider from './context/AuthProvider/AuthProvider';
 import Services from './Components/Services/Services';
 import Information from './Components/Information/Information';
 import Doctors from './Components/Doctors/Doctors';
+import AddService from './Components/AddService/AddService';
+import About from './Components/About/About';
+import AddDoctors from './Components/AddDoctors/AddDoctors';
 
 function App() {
   return (
@@ -22,6 +25,10 @@ function App() {
         <Route path="/login" element={<Login></Login>} />
         <Route path="/doctor" element={<Doctors></Doctors>} />
         <Route path="/service" element={<Services></Services>} />
+        <Route path="/addservice" element={<AddService></AddService>} />
+        <Route path="/adddoctors" element={<AddDoctors></AddDoctors>} />
+        <Route path="/about" element={<About></About>} />
+
         <Route path="/information/:service" element={<Information></Information>} />
         <Route path="/register" element={<Register></Register>} />
 

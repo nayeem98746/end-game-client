@@ -1,0 +1,10 @@
+.addProduct-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+.addProduct-container form{
+    width: 400px;
+}
