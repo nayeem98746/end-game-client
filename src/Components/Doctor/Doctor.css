@@ -1,0 +1,8 @@
+.doctor{
+    background-color: khaki;
+    border-radius: 15px;
+    border: 4px solid deepskyblue;
+}
+.doctor:hover{
+    background-color:burlywood;
+}

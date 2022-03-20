@@ -1,0 +1,22 @@
+.btn-class{
+    background-color: cadetblue;
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid darkorange;
+    color: whitesmoke;
+}
+.service{
+    background-color: aqua;
+    border-radius: 15px;
+    border: 2px solid darkslategrey;
+    padding-left: 20px;
+}
+
+.btn-class:hover{
+    background-color: darkslategrey;
+}
+.service:hover{
+    background-color: darkslategrey;
+    color: floralwhite;
+    
+}

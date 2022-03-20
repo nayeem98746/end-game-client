@@ -9,13 +9,13 @@
     background-size: cover;
     background-position: center;
 }
-.container{
+.log-con{
     /* position: relative; */
     width: 400px;
     background-color: whitesmoke;
     padding: 60px 40px;
 }
-.container .header-font{
+.log-con .header-font{
     font-size: 40px;
     margin-bottom: 60px;
 

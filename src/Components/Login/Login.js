@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import './Login.css'
 import { Link, NavLink } from 'react-router-dom';
+import useAuth from '../../Hooks/UseAuth';
+import { Spinner } from 'react-bootstrap';
+import google from '../../Images/google.png'
 
 const Login = () => {
     const [loginFromData , setLoginFromData] = useState({})
+    const {user,googleSignIn,  loginUser, isLoading,authError} = useAuth()
+
 
     const handleOnChange = e => {
         const field = e.target.name
@@ -17,15 +22,16 @@ const Login = () => {
     }
 
     const handleLoginSubmit = e => {
+        loginUser(loginFromData.email, loginFromData.password )
         e.preventDefault()
       
     }
 
     return (
         <div className='main-section'>
-        <div className='container'>
+        <div className='log-con'>
         <header className='header-font'>Login Form</header>
-        <form onSubmit={handleLoginSubmit}  className='form-intro' action=""  >
+     {!isLoading &&   <form onSubmit={handleLoginSubmit}  className='form-intro' action=""  >
             <div className='input-field'>
                 <input
                  className='input-style' type="email" 
@@ -48,6 +54,7 @@ const Login = () => {
                   />
                 <label htmlFor="">Password</label>
             </div>
+            
             <div className='button'>
                 <div className='inner'></div>
                 <button className='from-button'  
@@ -55,7 +62,12 @@ const Login = () => {
                 >Login</button>
                 <NavLink className='register-btn' as={Link} to='/register' >Please Register</NavLink>
             </div>
-        </form>
+          
+            <button className="button" onClick={ ()=> googleSignIn() }>  <img style={{width:'30px', marginLeft:'30px'}} src={google} alt="" /> GooglesignIn</button>
+        </form>}
+        {isLoading &&   <Spinner animation="border" variant="info" />}
+            {user?.email && <h6 style={{paddingTop:'50px'}}>register successfull</h6> }
+            {authError && <h6 style={{paddingTop:'50px'}}>{authError }</h6> }
     </div>
   </div>
     );

@@ -6,6 +6,9 @@ import Header from './Components/Home/Header/Header';
 import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
 import AuthProvider from './context/AuthProvider/AuthProvider';
+import Services from './Components/Services/Services';
+import Information from './Components/Information/Information';
+import Doctors from './Components/Doctors/Doctors';
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login></Login>} />
+        <Route path="/doctor" element={<Doctors></Doctors>} />
+        <Route path="/service" element={<Services></Services>} />
+        <Route path="/information/:service" element={<Information></Information>} />
         <Route path="/register" element={<Register></Register>} />
 
         
