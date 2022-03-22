@@ -12,7 +12,7 @@ const Service = ({service}) => {
     const removeBookings = (id) => {
         const confirm = window.confirm("Are you sure? Want to cancel?");
         if (confirm) {
-          fetch(`http://localhost:5000/delete/${id}`, {
+          fetch(`https://secure-temple-05589.herokuapp.com/delete/${id}`, {
             method: "DELETE",
           })
             .then((res) => res.json())

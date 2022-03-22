@@ -7,7 +7,7 @@ const AddDoctors = () => {
     const {register, handleSubmit, reset} = useForm()
 
     const onSubmit = data => {
-        axios.post('http://localhost:5000/doctors' , data)
+        axios.post('https://secure-temple-05589.herokuapp.com/doctors' , data)
         .then(res => {
             console.log(res)
             if(res.data.insertedId){

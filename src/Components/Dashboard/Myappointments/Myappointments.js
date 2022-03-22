@@ -12,7 +12,7 @@ const Myappointments = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/appointments/${user?.email}`)
+        fetch(`https://secure-temple-05589.herokuapp.com/appointments/${user?.email}`)
           .then((res) => res.json())
           .then((result) => {
             setCount(result.count);
@@ -25,7 +25,7 @@ const Myappointments = () => {
     const removeBookings = (id) => {
         const confirm = window.confirm("Are you sure? Want to cancel?");
         if (confirm) {
-          fetch(`http://localhost:5000/delete/${id}`, {
+          fetch(`https://secure-temple-05589.herokuapp.com/delete/${id}`, {
             method: "DELETE",
           })
             .then((res) => res.json())

@@ -22,7 +22,7 @@ const Appointment = () => {
         data.name = user.displayName;
         data.email = user.email;
         console.log(data);
-        fetch("http://localhost:5000/appointments", {
+        fetch("https://secure-temple-05589.herokuapp.com/appointments", {
           method: "POST",
           headers: {
             "content-type": "application/json",

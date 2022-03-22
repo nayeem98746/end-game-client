@@ -11,7 +11,7 @@ const DoctorInformation = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/doctors`)
+        fetch(`https://secure-temple-05589.herokuapp.com/doctors`)
         .then(res=>res.json()) 
         .then(data => setDetails(data))
         .then(data => console.log(data))
@@ -20,7 +20,7 @@ const DoctorInformation = () => {
     console.log(product)
 
     useEffect(() => {
-        fetch(`http://localhost:5000/review/${id}`)
+        fetch(`https://secure-temple-05589.herokuapp.com/review/${id}`)
           .then((res) => res.json())
           .then((data) => setReviews(data));
       }, [id]);

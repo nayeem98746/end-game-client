@@ -8,7 +8,7 @@ const Information = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/services`)
+        fetch(`https://secure-temple-05589.herokuapp.com/services`)
         .then(res=>res.json()) 
         .then(data => setDetails(data))
         .then(data => console.log(data))

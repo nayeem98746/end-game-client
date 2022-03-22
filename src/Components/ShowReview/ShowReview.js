@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const ShowReview = () => {
     const [reviews , setReviews] = useState([])
     useEffect( () => {
-        fetch('http://localhost:5000/addReview')
+        fetch('https://secure-temple-05589.herokuapp.com/addReview')
         .then(res => res.json())
         .then(data => setReviews(data))
     } ,[])
