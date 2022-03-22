@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword , signOut, onAuthStateChanged ,signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword , signOut, onAuthStateChanged ,signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup, updateProfile } from "firebase/auth";
 import { useEffect, useState } from "react";
 import initializeaFirebase from "../Components/Login/Firebase/firebase.init";
 initializeaFirebase()
@@ -6,44 +6,55 @@ initializeaFirebase()
 const useFirebase = () => {
     const [user, setUser] = useState({})
     const [ authError, setAuthError ] = useState('');
-
+    const [ modal, setModal ] = useState(false)
+    const [admin, setAdmin] = useState(false)
     const [ isLoading, setIsLoading ] = useState(true)
     const provider = new GoogleAuthProvider()
 
     const auth = getAuth();
 // register function
-    const registerUser = (email, password) => {
-      setIsLoading(true)
-        createUserWithEmailAndPassword(auth, email, password)
-   .then((userCredential) => {
-   setAuthError('')
-  })
-  .catch((error) => {
-    setAuthError(error.message)
-   
-  })
-  .finally(() => setIsLoading(false))
-    }
+const registerUser = (email,password ,name)=> {
+  setIsLoading(true)
+  createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    setAuthError('')
+      const newUser = {email, displayName: name};
+      setUser(newUser)
+      userDatabase(email, name, 'POST')
+      updateProfile(auth.currentUser, {
+          displayName: name 
+        }).then(() => {
+          setModal(true)
+          
+        }).catch((error) => {
+         
+        });
+     
+    })
+    .catch((error) => {
+      
+      setAuthError(error.message);
+      
+    })
+    .finally(() => setIsLoading(false));
+}
+
+
 
     // google function 
     const googleSignIn = () => {
+      setIsLoading(true)
       signInWithPopup(auth, provider)
   .then((result) => {
     setUser(result.user)
+    userDatabase(result.user.email, result.user.displayName, 'PUT')  
 
   }).catch((error) => {
-    setAuthError(error.message)
-  });
+    setAuthError(error.message) 
+  })
+  .finally(() => setIsLoading(false))
 
     }
-
-
-
-
-
-
-
-
 
 
 
@@ -52,18 +63,26 @@ const useFirebase = () => {
     const loginUser = (email, password) => {
       setIsLoading(true)
         signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
+  .then( result => {
+    setUser(result.user)
+    setModal(true)
     setAuthError('')
 
   })
-  .catch((error) => {
+  .catch((error) => { 
     setAuthError( error.message )
   })
   .finally(() => setIsLoading(false))
 
     }
 
+// admin data load 
+    useEffect(()=> {
+      fetch(`http://localhost:5000/users/${user.email}`)
+      .then(res => res.json())
+      .then(data => setAdmin(data.admin))
 
+    } ,[user.email])
 
 
 
@@ -95,7 +114,18 @@ const useFirebase = () => {
 
     }
 
+    const userDatabase = (email, displayName,method ) => {
+      const user = {email, displayName}
+      fetch('http://localhost:5000/users', {
+        method: method,
+        headers:{
+          'content-type' : 'application/json'
+        },
+        body:JSON.stringify(user)
+      })
+      .then()
 
+    }
 
 
 
@@ -106,7 +136,10 @@ const useFirebase = () => {
         user, 
         registerUser,
         isLoading,
+        admin,
         authError,
+        setModal,
+        modal,
         googleSignIn,
         loginUser,
         logout,

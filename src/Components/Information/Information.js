@@ -15,6 +15,7 @@ const Information = () => {
     },[])
     const product=details.find(pd => pd._id == service)
     console.log(product)
+
     return (
         <div>
              <img src={product?.img} alt="" />
@@ -22,6 +23,7 @@ const Information = () => {
             <h3>Name : {product?.name}</h3>
             <h3>Amount : {product?.amount}$</h3>
             <h3>Description : {product?.describtion}</h3>
+            
         </div>
     );
 };

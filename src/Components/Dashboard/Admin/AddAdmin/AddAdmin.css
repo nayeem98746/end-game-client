@@ -1,0 +1,29 @@
+.from-main{
+    background-color: darkcyan;
+    padding: 200px;
+}
+.submit{
+    background-color: gold;
+    border-start-start-radius: 20px;
+    border-end-end-radius: 20px;
+    padding: 10px;
+}
+.name-input{
+    background-color:black;
+    color:whitesmoke ;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-top-color: yellow;
+    border-bottom-color: yellow;
+    font-weight: 600;
+}
+.text-style{
+    color: gold;
+    
+}
+.make-admin-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: darkcyan;
+}

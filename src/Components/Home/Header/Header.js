@@ -11,7 +11,7 @@ const Header = () => {
         
          <Navbar bg="light" variant="light" sticky="top" collapseOnSelect expand="lg">
       {/* <Container> */}
-        <NavLink to="/home"><img width='80px' src={logo} alt="" /></NavLink>
+        <NavLink to="/home"><img width='80px' src={logo} alt="" />SAN HOSPITAL</NavLink>
         <Navbar.Toggle />
         <Navbar.Collapse className='justify-content-end'>
 
@@ -19,6 +19,7 @@ const Header = () => {
           <Nav.Link className='link-style ' as={Link} to="/service"><h6 >Service</h6></Nav.Link>
           <Nav.Link className='link-style ' as={Link} to="/doctor"><h6 >Doctor</h6></Nav.Link>
           <Nav.Link className='link-style ' as={Link} to="/about"><h6 >About</h6></Nav.Link>
+          <Nav.Link className='link-style ' as={Link} to="/dashboard"><h6 >Dashboard</h6></Nav.Link>
          
           <a>
             {

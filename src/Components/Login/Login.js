@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import './Login.css'
 import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../../Hooks/UseAuth';
-import { Spinner } from 'react-bootstrap';
+import { Button, Modal, Spinner } from 'react-bootstrap';
 import google from '../../Images/google.png'
 
 const Login = () => {
     const [loginFromData , setLoginFromData] = useState({})
-    const {user,googleSignIn,  loginUser, isLoading,authError} = useAuth()
+    const {user,googleSignIn,  loginUser, isLoading,authError, modal, setModal} = useAuth()
 
 
     const handleOnChange = e => {
@@ -29,6 +29,17 @@ const Login = () => {
 
     return (
         <div className='main-section'>
+             <Modal show={modal}>
+        <Modal.Header>
+          <Modal.Title>Login Successful !</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Hello Mr./Ms. {user?.displayName} You have successfully logged in !</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={ ()=>setModal(false)}>
+            <Link style={{color:'white',textDecoration:'none'}} to="/">Go To Home</Link>
+          </Button>
+        </Modal.Footer>
+      </Modal>
         <div className='log-con'>
         <header className='header-font'>Login Form</header>
      {!isLoading &&   <form onSubmit={handleLoginSubmit}  className='form-intro' action=""  >

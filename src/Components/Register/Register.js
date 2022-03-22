@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, Spinner } from 'react-bootstrap';
+import { Button, Modal, NavLink, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import useAuth from '../../Hooks/UseAuth';
 import './Register.css'
@@ -7,7 +7,7 @@ import './Register.css'
 const Register = () => {
   const [loginFromData , setLoginFromData] = useState({})
 
-  const { user , authError, registerUser , isLoading} = useAuth()
+  const { user , authError, registerUser , isLoading, modal, setModal} = useAuth()
 
   const handleOnChange = e => {
       const field = e.target.name
@@ -25,13 +25,24 @@ const Register = () => {
       alert('password is not match')
       return
   }
-  registerUser(loginFromData.email, loginFromData.password)
+  registerUser(loginFromData.email, loginFromData.password,loginFromData.name)
       e.preventDefault()
     
   }
   return (
     <div>
               <div className='main-section'>
+              <Modal show={modal}>
+        <Modal.Header>
+          <Modal.Title>Registration Successful !</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Hello Mr./Ms. {user?.displayName} You have successfully registered !</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={ ()=>setModal(false)}>
+            <Link style={{color:'white',textDecoration:'none'}} to="/">Go To Home</Link>
+          </Button>
+        </Modal.Footer>
+      </Modal>
             <div className='log-con'>
             <header className='header-font'>Register Form</header>
            {!isLoading && <form  className='form-intro' action="" onSubmit={handleRegisterSubmit} >
